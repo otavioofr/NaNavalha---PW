@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cadastro - NaNavalha</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+  <script>
+    function toggleCamposBarbearia() {
+      const checkbox = document.getElementById("barbearia");
+      const camposExtras = document.getElementById("campos-barbearia");
+      camposExtras.style.display = checkbox.checked ? "block" : "none";
+    }
+
+    function somenteNumeros(el) {
+      el.value = el.value.replace(/\D/g, '');
+    }
+
+    function capturarDados(event) {
+      event.preventDefault();
+
+      const isBarbearia = document.getElementById("barbearia").checked;
+
+      const dados = {
+        nome: document.getElementById("nome").value,
+        email: document.getElementById("email").value,
+        senha: document.getElementById("senha").value,
+        barbearia: isBarbearia
+      };
+
+      if (isBarbearia) {
+        dados.nomeEstabelecimento = document.getElementById("nomeEstabelecimento").value;
+        dados.endereco = document.getElementById("endereco").value;
+        dados.cnpj = document.getElementById("cnpj").value;
+        dados.telefoneFixo = document.getElementById("telefoneFixo").value;
+        dados.cpfDono = document.getElementById("cpfDono").value;
+      }
+
+      console.log("Dados do cadastro:", dados);
+
+      alert("Cadastro realizado! Confira o console para ver os dados.");
+    }
+  </script>
+  <style>
+    #btnLogin {
+      margin-top: 10px;
+      background-color: transparent;
+      border: none;
+      color: blue;
+      text-decoration: underline;
+      cursor: pointer;
+      font-size: 1em;
+    }
+    #btnLogin:hover {
+      color: darkblue;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">NaNavalha</div>
+    <nav>
+
+      <a href="area_inicial.html">Início</a>
+      <a href="login.html">Login</a>
+    </nav>
+  </header>
+
+  <main class="content">
+    <h2>Cadastro</h2>
+    <form id="formCadastro" onsubmit="capturarDados(event)">
+
+      <div class="form-group">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" required>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" required>
+      </div>
+
+      <div class="form-group">
+        <label for="senha">Senha:</label>
+        <input type="password" id="senha" required>
+      </div>
+
+      <div class="checkbox-wrapper" style="margin-top: 20px;">
+        <input type="checkbox" id="barbearia" name="barbearia" onchange="toggleCamposBarbearia()">
+        <label for="barbearia">Para Barbearias</label>
+      </div>
+
+      <div id="campos-barbearia" style="display: none; margin-top: 20px;">
+        <div class="form-group">
+          <label for="nomeEstabelecimento">Nome do Estabelecimento:</label>
+          <input type="text" id="nomeEstabelecimento">
+        </div>
+
+        <div class="form-group">
+          <label for="endereco">Endereço:</label>
+          <input type="text" id="endereco">
+        </div>
+
+        <div class="form-group">
+          <label for="cnpj">CNPJ:</label>
+          <input type="text" id="cnpj" placeholder="Digite somente números" maxlength="14" oninput="somenteNumeros(this)" />
+        </div>
+
+        <div class="form-group">
+          <label for="telefoneFixo">Telefone Fixo:</label>
+          <input type="tel" id="telefoneFixo" placeholder="Digite somente números" maxlength="11" oninput="somenteNumeros(this)" />
+        </div>
+
+        <div class="form-group">
+          <label for="cpfDono">CPF do Dono:</label>
+          <input type="text" id="cpfDono" placeholder="Digite somente números" maxlength="11" oninput="somenteNumeros(this)" />
+        </div>
+      </div>
+
+      <button type="submit" id="button" style="margin-top: 20px; display: inline-block;">Cadastrar</button>
+
+      <button type="button" id="btnLogin" onclick="location.href='login.html'">Já tenho login</button>
+    </form>
+  </main>
+</body>
+</html>

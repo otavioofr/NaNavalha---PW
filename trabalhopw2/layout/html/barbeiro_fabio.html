@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Barbeiro Fabio - NaNavalha</title>
+  <style>
+    body {
+      max-width: 600px;
+      margin: 30px auto;
+      padding: 20px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 40px;
+      font-weight: 700;
+      color: #222;
+    }
+
+    .section {
+      margin-bottom: 40px;
+    }
+
+    h2 {
+      margin-bottom: 15px;
+      font-weight: 600;
+      color: #555;
+      border-bottom: 2px solid #e1e1e1;
+      padding-bottom: 5px;
+    }
+
+    .horarios {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .horario-btn {
+      flex: 1 1 30%;
+      background-color: #fff;
+      border: 2px solid #ddd;
+      border-radius: 10px;
+      padding: 12px 0;
+      text-align: center;
+      font-weight: 600;
+      color: #333;
+      cursor: pointer;
+      box-shadow: 0 2px 5px rgb(0 0 0 / 0.1);
+      transition: all 0.3s ease;
+      user-select: none;
+    }
+
+    .horario-btn:hover {
+      background-color: #007bff;
+      border-color: #007bff;
+      color: white;
+      box-shadow: 0 4px 12px rgb(0 123 255 / 0.6);
+    }
+
+    .horario-btn.selecionado {
+      background-color: #28a745;
+      border-color: #28a745;
+      color: white;
+      box-shadow: 0 4px 12px rgba(40, 167, 69, 0.6);
+    }
+
+    #mensagem {
+      margin-top: 15px;
+      font-weight: bold;
+      color: #28a745;
+      text-align: center;
+    }
+
+    .cortes-list {
+      list-style: none;
+      padding-left: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .corte-item {
+      background-color: #007bff;
+      color: white;
+      padding: 10px 16px;
+      border-radius: 20px;
+      font-weight: 600;
+      box-shadow: 0 2px 5px rgb(0 123 255 / 0.4);
+      user-select: none;
+    }
+    
+    #voltar {
+      display: block;
+      max-width: 180px;
+      margin: 0 auto;
+      text-align: center;
+      background-color: #28a745;
+      color: white;
+      font-weight: 700;
+      padding: 12px 0;
+      border-radius: 30px;
+      text-decoration: none;
+      box-shadow: 0 4px 15px rgb(40 167 69 / 0.6);
+      transition: background-color 0.3s ease;
+      user-select: none;
+    }
+
+    #voltar:hover {
+      background-color: #218838;
+      box-shadow: 0 6px 20px rgb(33 136 56 / 0.8);
+    }
+  </style>
+</head>
+<body>
+  <h1>Barbeiro Fabio</h1>
+
+  <div class="section">
+    <h2>Horários Disponíveis</h2>
+    <div class="horarios">
+      <div class="horario-btn">10:00 - 11:00</div>
+      <div class="horario-btn">11:30 - 12:30</div>
+      <div class="horario-btn">14:30 - 15:30</div>
+      <div class="horario-btn">16:00 - 17:00</div>
+    </div>
+    <div id="mensagem"></div>
+  </div>
+
+  <div class="section">
+    <h2>Tipos de Corte</h2>
+    <ul class="cortes-list">
+      <li class="corte-item">Navalha</li>
+      <li class="corte-item">Barba</li>
+      <li class="corte-item">Raspa</li>
+      <li class="corte-item">Degradê</li>
+    </ul>
+  </div>
+
+  <a id="voltar" href="barbearia.html">← Voltar para seleção de barbeiros</a>
+
+  <script>
+    const horarios = document.querySelectorAll('.horario-btn');
+    const mensagem = document.getElementById('mensagem');
+
+    horarios.forEach(botao => {
+      botao.addEventListener('click', () => {
+        horarios.forEach(b => b.classList.remove('selecionado'));
+        botao.classList.add('selecionado');
+        mensagem.textContent = `Horário ${botao.textContent} marcado com sucesso!`;
+      });
+    });
+  </script>
+  
+</body>
+</html>
